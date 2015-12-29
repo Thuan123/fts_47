@@ -11,12 +11,6 @@
     <% end %>
   </td>
   <td>
-    <% if question.waitting? %>
-      <%= link_to t("questions.accept"), admin_question_path(question,
-        question: {status: "accepted"}), method: :patch, class: "btn btn-primary btn-xs btn-danger" %>
-    <% end %>
-  </td>
-  <td>
     <% question.answers.each do |answer| %>
       <li>
         <%= answer.content %>
@@ -25,9 +19,8 @@
     <% end %>
   </td>
   <td>
-    <%= link_to t("question.edit"), edit_admin_question_path(question),
-      class: "btn btn-primary btn-xs" %>
-    <%= link_to t("question.delete"), admin_question_path(question),
+    <%= link_to t("question.edit"), edit_question_path(question), class: "btn btn-primary btn-xs" %>
+    <%= link_to t("question.delete"), question_path(question),
       class: "btn btn-primary btn-xs btn-danger", method: :delete, data: {confirm: t("you_sure")} %>
   </td>
 </tr>

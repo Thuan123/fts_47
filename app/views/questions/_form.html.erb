@@ -1,4 +1,4 @@
-<%= form_for [:admin, @question] do |f| %>
+<%= form_for @question do |f| %>
   <%= render "shared/error_messages", object: f.object %>
   <table class="table table-bordered">
     <tbody>
@@ -9,7 +9,7 @@
       <tr>
         <td><%= f.label :question_type %></td>
         <td>
-          <%= f.select :question_type, options_for_select(Settings.question.types, @question.question_type),
+          <%= f.select :question_type, options_for_select(Settings.question.types, params[:question_type]),
             {}, {class: "form-control question-type"} %>
         </td>
       </tr>
@@ -21,8 +21,8 @@
         </td>
       </tr>
       <div id="answers">
-        <%= f.fields_for :answers do |text_form| %>
-          <%= render @question.text? ? "text_form" : "answer_form", f: text_form %>
+        <%= f.fields_for :answers do |answer_form| %>
+          <%= render "answer_form", f: answer_form  %>
         <% end %>
       </div>
     </tbody>

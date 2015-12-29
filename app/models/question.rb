@@ -1,7 +1,9 @@
 class Question < ActiveRecord::Base
   belongs_to :category
+  belongs_to :user
   has_many :answers, dependent: :destroy
 
+  enum status: [:waitting, :accepted]
   enum question_type: [:single_choice, :multiple_choices, :text]
 
   accepts_nested_attributes_for :answers, allow_destroy: true

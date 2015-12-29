@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "contact" => "static_pages#contact"
   get "about" => "static_pages#about"
   devise_for :users
+  resources :questions
 
   namespace :admin do
     root "categories#index"

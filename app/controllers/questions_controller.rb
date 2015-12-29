@@ -1,24 +1,20 @@
-class Admin::QuestionsController < ApplicationController
+class QuestionsController < ApplicationController
   load_and_authorize_resource
-  before_action :load_categories
+  before_action :load_categories, except: [:index, :destroy]
 
   def index
-    @search = @questions.search params[:q]
-    @questions = @search.result.paginate page: params[:page]
+    @users = User.find current_user.id
+    @questions = @users.questions.paginate page: params[:page]
   end
 
   def create
     @question.user_id = current_user.id
-    @question.status = Question.statuses[:accepted]
     if @question.save
       flash[:success] = t "question.success"
-      redirect_to admin_questions_path
+      redirect_to questions_path
     else
       render :new
     end
-  end
-
-  def edit
   end
 
   def update
@@ -33,7 +29,7 @@ class Admin::QuestionsController < ApplicationController
   def destroy
     @question.destroy
     flash[:success] = t "question.delete_succesfull"
-    redirect_to admin_questions_path
+    redirect_to questions_path
   end
 
   private
