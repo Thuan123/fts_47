@@ -3,7 +3,6 @@ class CreateExams < ActiveRecord::Migration
     create_table :exams do |t|
       t.integer :time
       t.integer :mark
-      t.string :status
       t.references :user, index: true, foreign_key: true
       t.references :category, index: true, foreign_key: true
 

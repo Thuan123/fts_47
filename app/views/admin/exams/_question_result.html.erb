@@ -1,0 +1,37 @@
+<li>
+  <%= f.object.question.content %>
+  <%= f.check_box :correct %>
+</li>
+<br>
+<% case f.object.question.question_type %>
+  <% when Settings.question.types.single %>
+    <% f.object.question.answers.each do |answer| %>
+      <% is_checked = f.object.answer.include?(answer.content.to_s) %>
+      <%= f.radio_button :answer, answer.content,
+        {checked: is_checked, multiple: true, disabled: true} %>
+      <% if is_checked && !answer.correct? %>
+        <del><%= answer.content %></del><br/>
+      <% else %>
+        <%= answer.content %></br>
+      <% end %>
+  <% end %>
+  <% when Settings.question.types.multiple %>
+    <% f.object.question.answers.each do |answer| %>
+      <% is_checked = f.object.answer.include?(answer.content.to_s) %>
+      <%= f.check_box :answer,
+        {checked: is_checked, multiple: true, disabled: true},
+          answer.content, false %>
+      <% if is_checked && !answer.correct? %>
+        <del><%= answer.content %></del><br/>
+      <% else %>
+        <%= answer.content %></br>
+      <% end %>
+  <% end %>
+  <% when Settings.question.types.text %>
+    <% text = f.object.answer.to_s + "\n" + "Answer: " + f.object
+      .question.answers.first.content %>
+    <%= f.text_area :answer, disabled: true,
+      class: "form-control", cols: 30, rows: 2, value: text,
+        placeholder: t("exam.enterexams") %><br/>
+  <% end %>
+<br>

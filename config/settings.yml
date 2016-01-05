@@ -12,7 +12,7 @@ question:
   num_correct: 1
 
 exam:
-  duration: 30
-  question_number: 15
+  duration: 1200
+  question_number: 20
 filter:
   all: "all"

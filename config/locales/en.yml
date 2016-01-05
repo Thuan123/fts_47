@@ -93,9 +93,25 @@ en:
     created: "Exam created successfull"
     select_category: "Select a Category"
     start: "Start"
+    continue: "Continue"
+    views: "View"
+    enterexams: "Enter answer of questions"
+    checked:
+      success: "Successfull"
+      fails: "Fails"
+    admin:
+      title: "Exams"
+      manage: "Manages Exam"
+      delete_exam:
+        success: "Delete exams successfull"
     label:
       created_date: "Created Date"
       category: "Category"
       status: "Status"
       spent_time: "Spent Time"
       mark: "Score"
+      duration: "Duration"
+      number_question: "Number question"
+      action: "Action"
+      finish: "Finish"
+      save: "Save"

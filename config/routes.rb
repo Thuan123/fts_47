@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :users
     resources :categories
     resources :questions
+    resources :exams
   end
 
   resources :exams

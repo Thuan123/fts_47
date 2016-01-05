@@ -1,0 +1,19 @@
+<tr>
+  <td><%= exam.created_at.strftime t("time") %></td>
+  <td><%= exam.category.name %></td>
+  <td>
+    <span class="label label-warning">
+      <%= exam.status %>
+    </span>
+  </td>
+  <td><%= exam.duration %></td>
+  <td><%= exam.number_question %></td>
+  <td><%= exam.spent_time %></td>
+  <td><%= exam.mark %></td>
+  <td>
+    <%= link_to t("view"), [:admin, exam], class: "btn btn-success" %>
+    <%= link_to t("delete"), admin_exam_path(exam), class: "btn btn-primary",
+      method: :delete, data: {confirm: t("you_sure")} %>
+  </td>
+
+</tr>

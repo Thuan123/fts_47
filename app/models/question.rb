@@ -8,7 +8,7 @@ class Question < ActiveRecord::Base
 
   accepts_nested_attributes_for :answers, allow_destroy: true
   validates :content, presence: true
-  validate :check_question_type
+  #validate :check_question_type
 
   private
   def correct_answer

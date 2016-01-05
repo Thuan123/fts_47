@@ -1,0 +1,35 @@
+<br>
+<li><%= f.object.question.content %></li>
+<% if f.object.question.single_choice? %>
+  <% f.object.question.answers.each do |answer| %>
+    <div class = "radio" %>
+      <div class = "col-md-2">
+        <%= f.radio_button :answer, answer.content,
+          {checked: f.object.answer.include?(answer.content.to_s), multiple: true} %>
+      </div>
+      <div class="col-md-2">
+        <%= answer.content %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+<% if f.object.question.multiple_choices? %>
+  <% f.object.question.answers.each do |answer| %>
+    <div class = "radio" %>
+      <div class = "col-md-2">
+        <%= f.check_box :answer, {checked: f.object.answer.include?(answer.content.to_s),
+          multiple: true}, answer.content, false %>
+      </div>
+      <div class="col-md-2">
+        <%= answer.content %>
+      </div>
+  </div>
+  <% end %>
+<% end %>
+<% if f.object.question.text? %>
+  <div class = "radio" %>
+    <%= f.text_area :answer, class: "form-control",  size: "10x4",
+      value: f.object.answer, placeholder: t("exam.enterexams") %>
+  </div>
+<% end %>
+<hr>

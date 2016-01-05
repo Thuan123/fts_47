@@ -1,0 +1,21 @@
+<div class="col-md-12 col-md-offset-0">
+<%= form_for @exam do |f| %>
+  <%= f.fields_for :results do |builder| %>
+    <ul>
+      <%= render "exam_question", f: builder %>
+    </ul>
+  <% end %>
+  <div class="form-horizontal">
+    <fieldset>
+      <div class="form-group">
+        <div class="col-lg-6">
+          <%= f.submit :finish, class: "btn btn-primary btn-sm" %>
+        </div>
+        <div class="col-lg-6">
+          <%= f.submit :save, class: "btn btn-primary btn-sm" %>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+<% end %>
+</div>

@@ -1,0 +1,7 @@
+<% if exam.opened? || exam.testing? %>
+  <%= link_to t("exam.start"), exam_path(exam), class: "btn btn-primary" %>
+<% elsif exam.saved? %>
+  <%= link_to t("exam.continue"), exam_path(exam), class: "btn btn-success" %>
+<% elsif exam.checking? %>
+  <%= link_to t("exam.view"), exam_path(exam), class: "btn btn-success" %>
+<% end %>
