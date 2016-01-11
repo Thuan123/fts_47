@@ -4,6 +4,8 @@ class Exam < ActiveRecord::Base
   has_many :results, dependent: :destroy
   has_many :questions, through: :results
 
+  after_create :send_email_delay_exam
+
   scope :order_desc, -> {order created_at: :desc}
 
   enum status: [:start, :uncheck, :checked, :testing]
@@ -26,6 +28,25 @@ class Exam < ActiveRecord::Base
 
   def calculate_mark
     self.results.correct.count
+  end
+
+  def send_email_delay_exam
+    ExamMailer.notify_delay(self).deliver_now
+  end
+
+  handle_asynchronously :send_email_delay_exam,
+    run_at: Proc.new {8.hours.from_now}
+
+  class << self
+    def notify_when_end_of_month
+      Exam.all.each do |exam|
+        ExamMailer.notify_when_end_of_month(exam).deliver_now
+      end
+    end
+
+    def statistic_question_true
+      self.results.correct.count
+    end
   end
 
   private
