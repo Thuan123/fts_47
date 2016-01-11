@@ -63,6 +63,9 @@ en:
   search: "Search"
   time: "%Y-%m-%d %H:%M:%S"
   you_sure: "Are you sure?"
+  email:
+    exam_delay: "Exam don't start after 8 hours"
+    exam_result: "Number of correct questions"
   question:
     title: "Question"
     create: "Create New Question"
